@@ -1,0 +1,174 @@
+/* ---------- Fonts (self-hosted: no request to Google, GDPR-friendly) ---------- */
+/* Brand font is "Boulder" (Canva). Fredoka is the closest free rounded alternative.
+   If you get a web-licensed Boulder file, add an @font-face for it and put it first in --font-display. */
+@font-face {
+  font-family: "Fredoka";
+  src: url("fonts/fredoka-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("fonts/nunito-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-display: swap;
+}
+
+/* ---------- Brand palette (sampled from the charte graphique) ---------- */
+:root {
+  --gold: #e1ab22;        /* logo text */
+  --gold-dark: #b8860b;   /* accessible gold for text on light bg */
+  --helmet: #ffbf05;      /* yellow helmet */
+  --brown: #ad4a0f;       /* beaver fur */
+  --brown-dark: #7c2f25;  /* tail */
+  --navy: #002677;        /* blue helmet */
+  --cream: #fff7e6;       /* page background */
+  --cream-deep: #f6e4b8;  /* alt sections */
+  --ink: #2b2118;         /* body text */
+  --ink-soft: #5c4a3a;
+
+  --font-display: "Fredoka", "Baloo 2", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 18px;
+  --shadow: 0 2px 0 var(--ink), 0 8px 24px rgba(124, 47, 37, 0.12);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--cream);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--brown); }
+a:hover { color: var(--brown-dark); }
+:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 6px; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 650; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.4rem); font-weight: 600; color: var(--brown); }
+h3 { font-size: 1.3rem; font-weight: 600; }
+
+.container { width: min(1100px, 100% - 2.5rem); margin-inline: auto; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255, 247, 230, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--cream-deep);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; gap: 1rem; }
+.brand {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-display); font-weight: 650; font-size: 1.5rem;
+  color: var(--gold); text-decoration: none;
+}
+.brand img { width: 40px; }
+nav { display: flex; align-items: center; gap: 1.25rem; }
+nav a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 0.95rem; }
+nav a:hover { color: var(--brown); }
+.nav-cta { background: var(--helmet); padding: 0.4rem 0.9rem; border-radius: 999px; border: 2px solid var(--ink); }
+.nav-cta:hover { color: var(--ink); background: var(--gold); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.05rem;
+  padding: 0.75rem 1.4rem; border-radius: 999px;
+  text-decoration: none; border: 2px solid var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--helmet); color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.btn-primary:hover { color: var(--ink); box-shadow: 0 5px 0 var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { color: var(--ink); background: #fff; }
+.btn-lg { font-size: 1.2rem; padding: 0.9rem 2rem; }
+
+/* ---------- Hero ---------- */
+.hero { padding: clamp(2.5rem, 6vw, 5rem) 0; }
+.hero-inner { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 2.5rem; }
+.eyebrow {
+  display: inline-block; margin: 0 0 1rem;
+  font-weight: 800; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); background: #fff; border: 2px solid var(--navy);
+  padding: 0.2rem 0.7rem; border-radius: 999px;
+}
+.hl { color: var(--brown); background: linear-gradient(transparent 62%, var(--helmet) 62%); }
+.lead { font-size: 1.15rem; color: var(--ink-soft); max-width: 38em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+.hero-logo { width: 100%; max-width: 460px; justify-self: center; }
+
+/* ---------- Sections ---------- */
+.section { padding: clamp(3rem, 7vw, 5rem) 0; }
+.section-alt { background: var(--cream-deep); }
+.section-intro { max-width: 42em; color: var(--ink-soft); margin-bottom: 2rem; }
+
+/* ---------- Mission cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.card {
+  background: #fff; border: 2px solid var(--ink); border-radius: var(--radius);
+  padding: 1.6rem; box-shadow: var(--shadow);
+}
+.card p { margin: 0; color: var(--ink-soft); }
+.card-icon {
+  width: 52px; height: 52px; display: grid; place-items: center;
+  font-size: 1.6rem; background: var(--helmet); border: 2px solid var(--ink); border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.project {
+  background: #fff; border: 2px solid var(--ink); border-radius: var(--radius);
+  padding: 1.6rem; box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.project p { color: var(--ink-soft); }
+.project a { margin-top: auto; font-weight: 800; text-decoration: none; }
+.project-tag {
+  margin: 0 0 0.5rem; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--navy) !important;
+}
+.project-next {
+  flex-direction: row; align-items: center; gap: 1.25rem;
+  background: transparent; border-style: dashed; box-shadow: none;
+}
+.project-next img { width: 90px; flex-shrink: 0; }
+.project-next p { margin: 0; }
+
+/* ---------- Contact ---------- */
+.contact { text-align: center; max-width: 640px; }
+.contact > p { color: var(--ink-soft); margin-bottom: 1.75rem; }
+.contact-alt { margin-top: 1.25rem; font-size: 0.95rem; }
+.contact-alt strong { color: var(--ink); user-select: all; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--brown-dark); color: #f6e4b8; padding: 2rem 0; font-size: 0.9rem; }
+.site-footer p { margin: 0.4rem 0; }
+.legal summary { cursor: pointer; font-weight: 700; margin-top: 0.5rem; }
+.legal[open] summary { margin-bottom: 0.5rem; }
+.legal p { max-width: 60em; opacity: 0.9; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-logo { order: -1; max-width: 260px; }
+  nav a:not(.nav-cta) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
